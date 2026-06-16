@@ -1,59 +1,61 @@
-<header class="toon-item-header">
-  <img class="item-img" src="{{item.img}}" data-edit="img" alt="{{item.name}}">
-  <input class="item-name" type="text" name="name" value="{{item.name}}">
-</header>
+<div class="toon-item-body-wrap">
+  <header class="toon-item-header">
+    <img class="item-img" src="{{item.img}}" data-edit="img" alt="{{item.name}}">
+    <input class="item-name" type="text" name="name" value="{{item.name}}">
+  </header>
 
-<section class="item-body">
-  {{#if (toonEq item.type "skill")}}
-  <div class="field">
-    <label>{{localize 'TOON.NH'}}</label>
-    <input type="number" name="system.nh" min="1" max="9" value="{{system.nh}}">
-  </div>
-  <div class="field">
-    <label>{{localize 'TOON.Attribute'}}</label>
-    <select name="system.attribute">
-      {{#each config.attributes as |attr key|}}
-      <option value="{{key}}" {{#if (toonEq ../system.attribute key)}}selected{{/if}}>{{localize attr.label}}</option>
-      {{/each}}
-    </select>
-  </div>
-  {{/if}}
+  <section class="item-body">
+    {{#if (toonEq item.type "skill")}}
+    <div class="field">
+      <label>{{localize 'TOON.NH'}}</label>
+      <input type="number" name="system.nh" min="1" max="9" value="{{system.nh}}">
+    </div>
+    <div class="field">
+      <label>{{localize 'TOON.Attribute'}}</label>
+      <select name="system.attribute">
+        {{#each config.attributes as |attr key|}}
+        <option value="{{key}}" {{#if (toonEq ../system.attribute key)}}selected{{/if}}>{{localize attr.label}}</option>
+        {{/each}}
+      </select>
+    </div>
+    {{/if}}
 
-  {{#if (toonEq item.type "prodigy")}}
-  <div class="field">
-    <label>{{localize 'TOON.NH'}}</label>
-    <input type="number" name="system.nh" min="1" max="9" value="{{system.nh}}">
-  </div>
-  <div class="field">
-    <label>{{localize 'TOON.Prodigies.Cost'}}</label>
-    <input type="number" name="system.cost" min="0" value="{{system.cost}}">
-  </div>
-  <div class="field checkbox">
-    <label>{{localize 'TOON.Prodigies.UsableOnOthers'}}</label>
-    <input type="checkbox" name="system.usableOnOthers" {{#if system.usableOnOthers}}checked{{/if}}>
-  </div>
-  {{/if}}
+    {{#if (toonEq item.type "prodigy")}}
+    <div class="field">
+      <label>{{localize 'TOON.NH'}}</label>
+      <input type="number" name="system.nh" min="1" max="9" value="{{system.nh}}">
+    </div>
+    <div class="field">
+      <label>{{localize 'TOON.Prodigies.Cost'}}</label>
+      <input type="number" name="system.cost" min="0" value="{{system.cost}}">
+    </div>
+    <div class="field checkbox">
+      <label>{{localize 'TOON.Prodigies.UsableOnOthers'}}</label>
+      <input type="checkbox" name="system.usableOnOthers" {{#if system.usableOnOthers}}checked{{/if}}>
+    </div>
+    {{/if}}
 
-  {{#if (toonEq item.type "weapon")}}
-  <div class="field">
-    <label>{{localize 'TOON.Weapons.Damage'}}</label>
-    <input type="text" name="system.damage" value="{{system.damage}}" placeholder="1d6">
-  </div>
-  {{/if}}
+    {{#if (toonEq item.type "weapon")}}
+    <div class="field">
+      <label>{{localize 'TOON.Weapons.Damage'}}</label>
+      <input type="text" name="system.damage" value="{{system.damage}}" placeholder="1d6">
+    </div>
+    {{/if}}
 
-  {{#if (toonEq item.type "gear")}}
-  <div class="field">
-    <label>{{localize 'TOON.Gear.Quantity'}}</label>
-    <input type="number" name="system.quantity" min="0" value="{{system.quantity}}">
-  </div>
-  <div class="field checkbox">
-    <label>{{localize 'TOON.Gear.Prop'}}</label>
-    <input type="checkbox" name="system.isProp" {{#if system.isProp}}checked{{/if}}>
-  </div>
-  {{/if}}
+    {{#if (toonEq item.type "gear")}}
+    <div class="field">
+      <label>{{localize 'TOON.Gear.Quantity'}}</label>
+      <input type="number" name="system.quantity" min="0" value="{{system.quantity}}">
+    </div>
+    <div class="field checkbox">
+      <label>{{localize 'TOON.Gear.Prop'}}</label>
+      <input type="checkbox" name="system.isProp" {{#if system.isProp}}checked{{/if}}>
+    </div>
+    {{/if}}
 
-  <div class="field description">
-    <label>{{localize 'TOON.Description'}}</label>
-    <textarea name="system.description" rows="6">{{system.description}}</textarea>
-  </div>
-</section>
+    <div class="field description">
+      <label>{{localize 'TOON.Description'}}</label>
+      <textarea name="system.description" rows="6">{{system.description}}</textarea>
+    </div>
+  </section>
+</div>

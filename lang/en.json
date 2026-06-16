@@ -1,0 +1,48 @@
+{
+  "TOON.SheetClass.Character": "Toon Character",
+  "TOON.SheetClass.Npc": "Toon NPC",
+  "TOON.SheetClass.Item": "Toon Item",
+
+  "TOON.Attributes.Muque": "Brawn",
+  "TOON.Attributes.Zip": "Zip",
+  "TOON.Attributes.Astucia": "Smarts",
+  "TOON.Attributes.Caradura": "Chutzpah",
+
+  "TOON.HP": "Hit Points",
+  "TOON.PlotPoints": "Plot Points",
+  "TOON.NH": "Skill Level",
+  "TOON.Attribute": "Attribute",
+  "TOON.Species": "Species",
+  "TOON.Profession": "Profession",
+  "TOON.BeliefsGoals": "Beliefs & Goals",
+  "TOON.Description": "Description",
+
+  "TOON.Fallen": "Fell Down!",
+  "TOON.Fell": "{name} Fell Down! Back in the game in three minutes.",
+  "TOON.Revive": "Get up (restore HP)",
+
+  "TOON.Roll.Test": "Test",
+  "TOON.Roll.Success": "SUCCESS",
+  "TOON.Roll.Fail": "FAILURE",
+  "TOON.Roll.Auto": "automatic!",
+
+  "TOON.Damage.Label": "Damage",
+  "TOON.Damage.Dealt": "{name} took {amount} damage!",
+
+  "TOON.Tabs.Skills": "Skills",
+  "TOON.Tabs.Prodigies": "Shticks",
+  "TOON.Tabs.Inventory": "Personal Items",
+
+  "TOON.Actor.NamePlaceholder": "Character name",
+
+  "TOON.Item.New": "New Item",
+  "TOON.Skills.New": "New Skill",
+  "TOON.Prodigies.New": "New Shtick",
+  "TOON.Prodigies.Cost": "Cost (Skill Points)",
+  "TOON.Prodigies.UsableOnOthers": "Usable on others (+2)",
+  "TOON.Weapons.New": "New Weapon",
+  "TOON.Weapons.Damage": "Damage",
+  "TOON.Gear.New": "New Item",
+  "TOON.Gear.Quantity": "Quantity",
+  "TOON.Gear.Prop": "Prop"
+}

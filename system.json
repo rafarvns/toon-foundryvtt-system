@@ -1,0 +1,38 @@
+{
+  "id": "toon-rpg",
+  "title": "Toon - O RPG no Mundo dos Desenhos Animados",
+  "description": "Sistema de RPG Toon para Foundry VTT: o jogo no mundo louco dos desenhos animados, onde ninguém morre — apenas Cai.",
+  "version": "0.1.0",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "14"
+  },
+  "authors": [
+    { "name": "rafarvns" }
+  ],
+  "esmodules": ["toon-rpg.mjs"],
+  "styles": ["styles/global.css"],
+  "languages": [
+    { "lang": "pt-BR", "name": "Português (Brasil)", "path": "lang/pt-BR.json" },
+    { "lang": "en", "name": "English", "path": "lang/en.json" }
+  ],
+  "defaultLanguage": "pt-BR",
+  "documentTypes": {
+    "Actor": {
+      "character": { "htmlFields": ["beliefsGoals", "description"] },
+      "npc": { "htmlFields": ["beliefsGoals", "description"] }
+    },
+    "Item": {
+      "skill": { "htmlFields": ["description"] },
+      "prodigy": { "htmlFields": ["description"] },
+      "weapon": { "htmlFields": ["description"] },
+      "gear": { "htmlFields": ["description"] }
+    }
+  },
+  "socket": false,
+  "grid": { "distance": 5, "units": "m" },
+  "primaryTokenAttribute": "hp",
+  "url": "https://github.com/rafarvns/toon-rpg",
+  "manifest": "https://raw.githubusercontent.com/rafarvns/toon-rpg/main/system.json",
+  "download": "https://github.com/rafarvns/toon-rpg/releases/latest/download/system.zip"
+}

@@ -1,0 +1,20 @@
+# Dependências
+node_modules/
+
+# Compêndios compilados (mantenha as fontes em packs/_source/)
+/packs/*/
+!/packs/_source/
+
+# Material de referência — não distribuído (grande e/ou protegido por direitos autorais)
+/foundry_14_api_docs/
+/toon-modulo-basico.pdf
+
+# Configuração local do Claude Code
+.claude/settings.local.json
+
+# Sistema operacional / editores
+.DS_Store
+Thumbs.db
+*.log
+.idea/
+*.code-workspace

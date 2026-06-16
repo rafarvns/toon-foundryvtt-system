@@ -1,0 +1,150 @@
+/* ============================================================
+   Toon - estilos base do sistema (scaffold inicial)
+   ============================================================ */
+
+.toon-rpg.sheet {
+  min-width: 520px;
+}
+
+.toon-rpg.sheet .window-content {
+  padding: 8px;
+  gap: 8px;
+  overflow-y: auto;
+  font-family: "Signika", sans-serif;
+}
+
+/* Cabeçalho */
+.toon-rpg .toon-header {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  border-bottom: 2px solid #000;
+  padding-bottom: 6px;
+}
+.toon-rpg .profile-img {
+  width: 64px;
+  height: 64px;
+  border: 2px solid #000;
+  border-radius: 6px;
+  object-fit: cover;
+}
+.toon-rpg .header-fields {
+  flex: 1;
+}
+.toon-rpg .char-name {
+  font-size: 1.4em;
+  font-weight: bold;
+}
+.toon-rpg .header-line {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Recursos */
+.toon-rpg .resources {
+  display: flex;
+  gap: 16px;
+  margin: 8px 0;
+  align-items: center;
+}
+.toon-rpg .resource {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.toon-rpg .hp-fields input {
+  width: 48px;
+  text-align: center;
+}
+.toon-rpg .fallen-tag {
+  color: #fff;
+  background: #c0392b;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Atributos */
+.toon-rpg .attributes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin: 8px 0;
+}
+.toon-rpg .attribute {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #999;
+  border-radius: 6px;
+  padding: 4px;
+  background: #fff8e1;
+}
+.toon-rpg .attribute input {
+  width: 48px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+/* Seções (perícias, prodígios, inventário) */
+.toon-rpg .section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #000;
+  margin-top: 8px;
+}
+.toon-rpg .section-head h2 {
+  margin: 0;
+  border: none;
+}
+.toon-rpg .skill-group h3 {
+  margin: 4px 0 2px;
+  font-size: 0.95em;
+  color: #555;
+}
+.toon-rpg ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.toon-rpg .skill-row,
+.toon-rpg .item-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 0;
+}
+.toon-rpg .skill-row .skill-name,
+.toon-rpg .item-row > span:first-child {
+  flex: 1;
+}
+.toon-rpg .nh {
+  width: 40px;
+  text-align: center;
+}
+.toon-rpg a[data-action] {
+  cursor: pointer;
+}
+
+/* Biografia */
+.toon-rpg .biography textarea,
+.toon-rpg .item-body textarea {
+  width: 100%;
+  resize: vertical;
+}
+
+/* Ficha de Item */
+.toon-rpg.sheet.item .field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0;
+}
+.toon-rpg.sheet.item .field.description {
+  flex-direction: column;
+  align-items: stretch;
+}

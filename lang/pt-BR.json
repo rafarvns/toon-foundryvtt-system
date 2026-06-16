@@ -1,0 +1,48 @@
+{
+  "TOON.SheetClass.Character": "Personagem Toon",
+  "TOON.SheetClass.Npc": "NPC Toon",
+  "TOON.SheetClass.Item": "Item Toon",
+
+  "TOON.Attributes.Muque": "Muque",
+  "TOON.Attributes.Zip": "Zip",
+  "TOON.Attributes.Astucia": "Astúcia",
+  "TOON.Attributes.Caradura": "Caradura",
+
+  "TOON.HP": "Pontos de Vida",
+  "TOON.PlotPoints": "Pontos de Trama",
+  "TOON.NH": "Nível de Habilidade",
+  "TOON.Attribute": "Atributo",
+  "TOON.Species": "Espécie",
+  "TOON.Profession": "Profissão",
+  "TOON.BeliefsGoals": "Crenças & Objetivos",
+  "TOON.Description": "Descrição",
+
+  "TOON.Fallen": "Caiu!",
+  "TOON.Fell": "{name} Caiu! Volta ao jogo em três minutos.",
+  "TOON.Revive": "Levantar (restaurar PV)",
+
+  "TOON.Roll.Test": "Testar",
+  "TOON.Roll.Success": "SUCESSO",
+  "TOON.Roll.Fail": "FALHA",
+  "TOON.Roll.Auto": "automático!",
+
+  "TOON.Damage.Label": "Dano",
+  "TOON.Damage.Dealt": "{name} sofreu {amount} pontos de dano!",
+
+  "TOON.Tabs.Skills": "Perícias",
+  "TOON.Tabs.Prodigies": "Prodígios",
+  "TOON.Tabs.Inventory": "Objetos Pessoais",
+
+  "TOON.Actor.NamePlaceholder": "Nome do personagem",
+
+  "TOON.Item.New": "Novo Item",
+  "TOON.Skills.New": "Nova Perícia",
+  "TOON.Prodigies.New": "Novo Prodígio",
+  "TOON.Prodigies.Cost": "Custo (Pontos de Perícia)",
+  "TOON.Prodigies.UsableOnOthers": "Utilizável em outros (+2)",
+  "TOON.Weapons.New": "Nova Arma",
+  "TOON.Weapons.Damage": "Dano",
+  "TOON.Gear.New": "Novo Objeto",
+  "TOON.Gear.Quantity": "Quantidade",
+  "TOON.Gear.Prop": "Treco"
+}

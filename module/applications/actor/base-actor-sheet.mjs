@@ -10,7 +10,7 @@ export class ToonActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     classes: ["toon-rpg", "sheet", "actor"],
     tag: "form",
     window: { resizable: true },
-    position: { width: 720, height: 760 },
+    position: { width: 880, height: 820 },
     form: { submitOnChange: true, closeOnSubmit: false },
     actions: {
       "roll-attribute": ToonActorSheet._onRollAttribute,

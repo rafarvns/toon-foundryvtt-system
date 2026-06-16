@@ -1,119 +1,142 @@
 <div class="toon-sheet-body">
-  <header class="toon-header">
-    <img class="profile-img" src="{{actor.img}}" data-edit="img" alt="{{actor.name}}">
-    <div class="header-fields">
-      <input class="char-name" type="text" name="name" value="{{actor.name}}" placeholder="{{localize 'TOON.Actor.NamePlaceholder'}}">
-      <div class="header-line">
-        <label>{{localize 'TOON.Species'}}</label>
-        <input type="text" name="system.species" value="{{system.species}}">
-        <label>{{localize 'TOON.Profession'}}</label>
-        <input type="text" name="system.profession" value="{{system.profession}}">
+  <div class="toon-banner">
+    <input class="char-name" type="text" name="name" value="{{actor.name}}" placeholder="{{localize 'TOON.Actor.NamePlaceholder'}}">
+  </div>
+
+  <div class="toon-columns">
+    <aside class="toon-sidebar">
+      <div class="portrait">
+        <img src="{{actor.img}}" data-edit="img" alt="{{actor.name}}">
       </div>
-    </div>
-  </header>
 
-  <section class="resources">
-    <div class="resource hp">
-      <label>{{localize 'TOON.HP'}}</label>
-      <div class="hp-fields">
-        <input type="number" name="system.hp.value" value="{{system.hp.value}}"> /
-        <input type="number" name="system.hp.max" value="{{system.hp.max}}">
+      <div class="vitals">
+        <div class="vital hp">
+          <label>{{localize 'TOON.HP'}}</label>
+          <span class="hp-fields">
+            <input type="number" name="system.hp.value" value="{{system.hp.value}}">
+            <span class="sep">/</span>
+            <input type="number" name="system.hp.max" value="{{system.hp.max}}">
+            <a class="revive" data-action="revive" title="{{localize 'TOON.Revive'}}"><i class="fas fa-heart"></i></a>
+          </span>
+        </div>
+        <div class="vital">
+          <label>{{localize 'TOON.PlotPoints'}}</label>
+          <input type="number" name="system.plotPoints" value="{{system.plotPoints}}">
+        </div>
+        {{#if system.fallen}}<span class="fallen-tag">{{localize 'TOON.Fallen'}}</span>{{/if}}
       </div>
-      {{#if system.fallen}}<span class="fallen-tag">{{localize 'TOON.Fallen'}}</span>{{/if}}
-      <a class="revive" data-action="revive" title="{{localize 'TOON.Revive'}}"><i class="fas fa-heart"></i></a>
-    </div>
-    <div class="resource">
-      <label>{{localize 'TOON.PlotPoints'}}</label>
-      <input type="number" name="system.plotPoints" value="{{system.plotPoints}}">
-    </div>
-  </section>
 
-  <section class="attributes">
-    {{#each attributes as |attr|}}
-    <div class="attribute">
-      <label>{{attr.label}}</label>
-      <input type="number" name="system.attributes.{{attr.key}}" min="1" max="6" value="{{attr.value}}">
-      <a class="roll" data-action="roll-attribute" data-attr="{{attr.key}}" title="{{localize 'TOON.Roll.Test'}}">
-        <i class="fas fa-dice-d6"></i>
-      </a>
-    </div>
-    {{/each}}
-  </section>
-
-  <section class="skills">
-    <div class="section-head">
-      <h2>{{localize 'TOON.Tabs.Skills'}}</h2>
-      <a data-action="add-item" data-type="skill" title="{{localize 'TOON.Skills.New'}}"><i class="fas fa-plus"></i></a>
-    </div>
-    {{#each skillsByAttribute as |group|}}
-    <div class="skill-group">
-      <h3>{{group.label}}</h3>
-      <ul>
-        {{#each group.skills as |skill|}}
-        <li class="skill-row" data-item-id="{{skill.id}}">
-          <span class="skill-name">{{skill.name}}</span>
-          <input class="nh" type="number" min="1" max="9" data-edit-item="system.nh" value="{{skill.system.nh}}">
-          <a data-action="roll-skill" title="{{localize 'TOON.Roll.Test'}}"><i class="fas fa-dice"></i></a>
-          <a data-action="edit-item"><i class="fas fa-edit"></i></a>
-          <a data-action="delete-item"><i class="fas fa-trash"></i></a>
-        </li>
+      <div class="attributes">
+        {{#each attributes as |attr|}}
+        <div class="attribute" data-attr="{{attr.key}}">
+          <label>{{attr.label}}</label>
+          <input type="number" name="system.attributes.{{attr.key}}" min="1" max="6" value="{{attr.value}}">
+          <a class="roll" data-action="roll-attribute" data-attr="{{attr.key}}" title="{{localize 'TOON.Roll.Test'}}">
+            <i class="fas fa-dice-d6"></i>
+          </a>
+        </div>
         {{/each}}
-      </ul>
-    </div>
-    {{/each}}
-  </section>
+      </div>
 
-  <section class="prodigies">
-    <div class="section-head">
-      <h2>{{localize 'TOON.Tabs.Prodigies'}}</h2>
-      <a data-action="add-item" data-type="prodigy" title="{{localize 'TOON.Prodigies.New'}}"><i class="fas fa-plus"></i></a>
-    </div>
-    <ul>
-      {{#each prodigies as |prodigy|}}
-      <li class="item-row" data-item-id="{{prodigy.id}}">
-        <span>{{prodigy.name}}</span>
-        <input class="nh" type="number" min="1" max="9" data-edit-item="system.nh" value="{{prodigy.system.nh}}">
-        <a data-action="roll-item" title="{{localize 'TOON.Roll.Test'}}"><i class="fas fa-dice"></i></a>
-        <a data-action="edit-item"><i class="fas fa-edit"></i></a>
-        <a data-action="delete-item"><i class="fas fa-trash"></i></a>
-      </li>
-      {{/each}}
-    </ul>
-  </section>
+      <div class="identity">
+        <div class="field">
+          <label>{{localize 'TOON.Species'}}</label>
+          <input type="text" name="system.species" value="{{system.species}}">
+        </div>
+        <div class="field">
+          <label>{{localize 'TOON.Profession'}}</label>
+          <input type="text" name="system.profession" value="{{system.profession}}">
+        </div>
+      </div>
+    </aside>
 
-  <section class="inventory">
-    <div class="section-head">
-      <h2>{{localize 'TOON.Tabs.Inventory'}}</h2>
-      <span>
-        <a data-action="add-item" data-type="weapon" title="{{localize 'TOON.Weapons.New'}}"><i class="fas fa-gavel"></i></a>
-        <a data-action="add-item" data-type="gear" title="{{localize 'TOON.Gear.New'}}"><i class="fas fa-plus"></i></a>
-      </span>
-    </div>
-    <ul>
-      {{#each weapons as |weapon|}}
-      <li class="item-row" data-item-id="{{weapon.id}}">
-        <span>{{weapon.name}}</span>
-        <span class="damage">{{weapon.system.damage}}</span>
-        <a data-action="roll-item" title="{{localize 'TOON.Damage.Label'}}"><i class="fas fa-dice"></i></a>
-        <a data-action="edit-item"><i class="fas fa-edit"></i></a>
-        <a data-action="delete-item"><i class="fas fa-trash"></i></a>
-      </li>
-      {{/each}}
-      {{#each gear as |g|}}
-      <li class="item-row" data-item-id="{{g.id}}">
-        <span>{{g.name}}{{#if g.system.isProp}} <em>({{localize 'TOON.Gear.Prop'}})</em>{{/if}}</span>
-        <span class="qty">x{{g.system.quantity}}</span>
-        <a data-action="edit-item"><i class="fas fa-edit"></i></a>
-        <a data-action="delete-item"><i class="fas fa-trash"></i></a>
-      </li>
-      {{/each}}
-    </ul>
-  </section>
+    <main class="toon-main">
+      <section class="toon-panel skills">
+        <div class="section-head">
+          <h2>{{localize 'TOON.Tabs.Skills'}}</h2>
+          <a data-action="add-item" data-type="skill" title="{{localize 'TOON.Skills.New'}}"><i class="fas fa-plus"></i></a>
+        </div>
+        <div class="panel-body">
+          {{#each skillsByAttribute as |group|}}
+          <div class="skill-group">
+            <h3>{{group.label}}</h3>
+            <ul>
+              {{#each group.skills as |skill|}}
+              <li class="skill-row" data-item-id="{{skill.id}}">
+                <span class="skill-name">{{skill.name}}</span>
+                <input class="nh" type="number" min="1" max="9" data-edit-item="system.nh" value="{{skill.system.nh}}">
+                <a data-action="roll-skill" title="{{localize 'TOON.Roll.Test'}}"><i class="fas fa-dice"></i></a>
+                <a data-action="edit-item" title="{{localize 'TOON.Description'}}"><i class="fas fa-edit"></i></a>
+                <a data-action="delete-item"><i class="fas fa-trash"></i></a>
+              </li>
+              {{/each}}
+            </ul>
+          </div>
+          {{/each}}
+        </div>
+      </section>
 
-  <section class="biography">
-    <h2>{{localize 'TOON.BeliefsGoals'}}</h2>
-    <textarea name="system.beliefsGoals" rows="4">{{system.beliefsGoals}}</textarea>
-    <h2>{{localize 'TOON.Description'}}</h2>
-    <textarea name="system.description" rows="4">{{system.description}}</textarea>
-  </section>
+      <section class="toon-panel prodigies">
+        <div class="section-head">
+          <h2>{{localize 'TOON.Tabs.Prodigies'}}</h2>
+          <a data-action="add-item" data-type="prodigy" title="{{localize 'TOON.Prodigies.New'}}"><i class="fas fa-plus"></i></a>
+        </div>
+        <div class="panel-body">
+          <ul>
+            {{#each prodigies as |prodigy|}}
+            <li class="item-row" data-item-id="{{prodigy.id}}">
+              <span>{{prodigy.name}}</span>
+              <input class="nh" type="number" min="1" max="9" data-edit-item="system.nh" value="{{prodigy.system.nh}}">
+              <a data-action="roll-item" title="{{localize 'TOON.Roll.Test'}}"><i class="fas fa-dice"></i></a>
+              <a data-action="edit-item"><i class="fas fa-edit"></i></a>
+              <a data-action="delete-item"><i class="fas fa-trash"></i></a>
+            </li>
+            {{/each}}
+          </ul>
+        </div>
+      </section>
+
+      <section class="toon-panel inventory">
+        <div class="section-head">
+          <h2>{{localize 'TOON.Tabs.Inventory'}}</h2>
+          <span class="head-actions">
+            <a data-action="add-item" data-type="weapon" title="{{localize 'TOON.Weapons.New'}}"><i class="fas fa-gavel"></i></a>
+            <a data-action="add-item" data-type="gear" title="{{localize 'TOON.Gear.New'}}"><i class="fas fa-plus"></i></a>
+          </span>
+        </div>
+        <div class="panel-body">
+          <ul>
+            {{#each weapons as |weapon|}}
+            <li class="item-row" data-item-id="{{weapon.id}}">
+              <span>{{weapon.name}}</span>
+              <span class="damage">{{weapon.system.damage}}</span>
+              <a data-action="roll-item" title="{{localize 'TOON.Damage.Label'}}"><i class="fas fa-dice"></i></a>
+              <a data-action="edit-item"><i class="fas fa-edit"></i></a>
+              <a data-action="delete-item"><i class="fas fa-trash"></i></a>
+            </li>
+            {{/each}}
+            {{#each gear as |g|}}
+            <li class="item-row" data-item-id="{{g.id}}">
+              <span>{{g.name}}{{#if g.system.isProp}} <em>({{localize 'TOON.Gear.Prop'}})</em>{{/if}}</span>
+              <span class="qty">x{{g.system.quantity}}</span>
+              <a data-action="edit-item"><i class="fas fa-edit"></i></a>
+              <a data-action="delete-item"><i class="fas fa-trash"></i></a>
+            </li>
+            {{/each}}
+          </ul>
+        </div>
+      </section>
+
+      <section class="toon-panel biography">
+        <div class="section-head">
+          <h2>{{localize 'TOON.BeliefsGoals'}}</h2>
+        </div>
+        <div class="panel-body">
+          <textarea name="system.beliefsGoals" rows="3" placeholder="{{localize 'TOON.BeliefsGoals'}}">{{system.beliefsGoals}}</textarea>
+          <h3 class="sub">{{localize 'TOON.Description'}}</h3>
+          <textarea name="system.description" rows="3" placeholder="{{localize 'TOON.Description'}}">{{system.description}}</textarea>
+        </div>
+      </section>
+    </main>
+  </div>
 </div>

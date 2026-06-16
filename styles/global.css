@@ -1,150 +1,326 @@
 /* ============================================================
-   Toon - estilos base do sistema (scaffold inicial)
+   Toon - tema "cartoon": contornos pretos, cores vivas,
+   painéis arredondados. Ficha de Actor e de Item.
    ============================================================ */
 
 .toon-rpg.sheet {
-  min-width: 520px;
+  min-width: 640px;
 }
 
 .toon-rpg.sheet .window-content {
-  padding: 8px;
-  gap: 8px;
-  overflow-y: auto;
+  padding: 0;
+  background: #fffdf3;
+  color: #1c1c1c;
   font-family: "Signika", sans-serif;
 }
 
-/* Cabeçalho */
-.toon-rpg .toon-header {
+/* ---------- Layout geral da ficha ---------- */
+.toon-sheet-body {
   display: flex;
-  gap: 8px;
-  align-items: center;
-  border-bottom: 2px solid #000;
-  padding-bottom: 6px;
-}
-.toon-rpg .profile-img {
-  width: 64px;
-  height: 64px;
-  border: 2px solid #000;
-  border-radius: 6px;
-  object-fit: cover;
-}
-.toon-rpg .header-fields {
-  flex: 1;
-}
-.toon-rpg .char-name {
-  font-size: 1.4em;
-  font-weight: bold;
-}
-.toon-rpg .header-line {
-  display: flex;
-  align-items: center;
-  gap: 4px;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  height: 100%;
+  overflow-y: auto;
 }
 
-/* Recursos */
-.toon-rpg .resources {
-  display: flex;
-  gap: 16px;
-  margin: 8px 0;
-  align-items: center;
+.toon-columns {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 12px;
+  align-items: start;
 }
-.toon-rpg .resource {
+
+/* ---------- Banner do nome ---------- */
+.toon-banner {
+  background: linear-gradient(180deg, #ffe14d, #ffc400);
+  border: 3px solid #1c1c1c;
+  border-radius: 16px;
+  box-shadow: 0 3px 0 #1c1c1c;
+  padding: 4px 14px;
+}
+.toon-banner .char-name {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-size: 1.9em;
+  font-weight: 800;
+  text-align: center;
+  letter-spacing: 0.5px;
+  color: #1c1c1c;
+}
+.toon-banner .char-name::placeholder { color: #00000055; }
+.toon-banner .char-name:focus { outline: none; box-shadow: none; }
+
+/* ---------- Cartões base ---------- */
+.toon-sidebar > div,
+.toon-panel {
+  background: #fff;
+  border: 3px solid #1c1c1c;
+  border-radius: 16px;
+  box-shadow: 0 3px 0 #1c1c1c;
+}
+
+/* ---------- Sidebar ---------- */
+.toon-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.portrait {
+  overflow: hidden;
+  padding: 0;
+}
+.portrait img {
+  display: block;
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  cursor: pointer;
+  border: none;
+}
+
+.vitals {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px;
+}
+.vital {
   display: flex;
   align-items: center;
-  gap: 4px;
+  justify-content: space-between;
+  gap: 6px;
 }
-.toon-rpg .hp-fields input {
+.vital label {
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.78em;
+}
+.vital input {
   width: 48px;
   text-align: center;
+  font-weight: 800;
+  font-size: 1.1em;
 }
-.toon-rpg .fallen-tag {
+.hp-fields {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.hp-fields .sep { font-weight: 800; }
+a.revive { color: #e8413c; font-size: 1.1em; }
+.fallen-tag {
+  align-self: center;
+  background: #e8413c;
   color: #fff;
-  background: #c0392b;
-  padding: 1px 6px;
-  border-radius: 4px;
-  font-weight: bold;
+  font-weight: 800;
   text-transform: uppercase;
+  padding: 2px 12px;
+  border-radius: 20px;
+  border: 2px solid #1c1c1c;
 }
 
-/* Atributos */
-.toon-rpg .attributes {
+/* Atributos coloridos por tipo */
+.attributes {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
-  margin: 8px 0;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding: 10px;
 }
-.toon-rpg .attribute {
+.attribute {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid #999;
-  border-radius: 6px;
-  padding: 4px;
-  background: #fff8e1;
+  gap: 2px;
+  border: 3px solid #1c1c1c;
+  border-radius: 14px;
+  box-shadow: 0 2px 0 #1c1c1c;
+  padding: 6px 4px;
 }
-.toon-rpg .attribute input {
-  width: 48px;
+.attribute label {
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.76em;
+}
+.attribute input {
+  width: 56px;
   text-align: center;
-  font-size: 1.2em;
-  font-weight: bold;
+  font-size: 1.6em;
+  font-weight: 800;
+  border: none;
+  background: transparent;
+}
+.attribute .roll { font-size: 1.1em; }
+.attribute[data-attr="muque"]    { background: #ffe0db; }
+.attribute[data-attr="zip"]      { background: #dbeeff; }
+.attribute[data-attr="astucia"]  { background: #dcf6dd; }
+.attribute[data-attr="caradura"] { background: #f0dcff; }
+
+.identity {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px;
+}
+.identity .field {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.identity label {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.72em;
+  color: #555;
 }
 
-/* Seções (perícias, prodígios, inventário) */
-.toon-rpg .section-head {
+/* ---------- Coluna principal ---------- */
+.toon-main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.toon-panel { overflow: hidden; }
+.section-head {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #000;
-  margin-top: 8px;
+  padding: 5px 12px;
+  border-bottom: 3px solid #1c1c1c;
+  background: linear-gradient(180deg, #3aa7ff, #1f8be0);
 }
-.toon-rpg .section-head h2 {
+.section-head h2 {
   margin: 0;
   border: none;
+  font-size: 1.05em;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 1px 1px 0 #00000055;
 }
-.toon-rpg .skill-group h3 {
-  margin: 4px 0 2px;
-  font-size: 0.95em;
-  color: #555;
+.section-head a { color: #fff; }
+.section-head .head-actions { display: flex; gap: 6px; }
+.panel-body { padding: 8px 12px; }
+
+/* Variação de cor por painel */
+.toon-panel.prodigies .section-head { background: linear-gradient(180deg, #b15cff, #8e3be0); }
+.toon-panel.inventory .section-head { background: linear-gradient(180deg, #ff9d3a, #f07d10); }
+.toon-panel.biography .section-head { background: linear-gradient(180deg, #46c66b, #27a64c); }
+
+/* Grupos de perícias */
+.skill-group { margin-bottom: 8px; }
+.skill-group h3 {
+  margin: 6px 0 2px;
+  font-size: 0.82em;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #1f8be0;
+  border-bottom: 2px dotted #d2d2d2;
 }
+
+/* Listas */
 .toon-rpg ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.toon-rpg .skill-row,
-.toon-rpg .item-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 2px 0;
-}
-.toon-rpg .skill-row .skill-name,
-.toon-rpg .item-row > span:first-child {
-  flex: 1;
-}
-.toon-rpg .nh {
-  width: 40px;
-  text-align: center;
-}
-.toon-rpg a[data-action] {
-  cursor: pointer;
-}
-
-/* Biografia */
-.toon-rpg .biography textarea,
-.toon-rpg .item-body textarea {
-  width: 100%;
-  resize: vertical;
-}
-
-/* Ficha de Item */
-.toon-rpg.sheet.item .field {
+.skill-row,
+.item-row {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin: 6px 0;
+  padding: 3px 6px;
+  border-radius: 8px;
 }
-.toon-rpg.sheet.item .field.description {
-  flex-direction: column;
-  align-items: stretch;
+.skill-row:hover,
+.item-row:hover { background: #fff3c4; }
+.skill-name,
+.item-row > span:first-child { flex: 1; font-weight: 600; }
+.nh {
+  width: 44px;
+  text-align: center;
+  font-weight: 800;
+  border: 2px solid #1c1c1c;
+  border-radius: 8px;
+  background: #fffbe6;
 }
+.damage,
+.qty { font-weight: 700; color: #666; }
+
+/* Botões de ação redondinhos */
+.toon-rpg a[data-action] {
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.1s, transform 0.1s;
+}
+.toon-rpg a[data-action]:hover {
+  background: #ffe14d;
+  transform: scale(1.18);
+}
+
+/* Biografia */
+.biography .panel-body { display: flex; flex-direction: column; gap: 4px; }
+.biography .sub {
+  margin: 6px 0 0;
+  font-size: 0.82em;
+  text-transform: uppercase;
+  border: none;
+  color: #27a64c;
+}
+.biography textarea,
+.item-body textarea {
+  width: 100%;
+  resize: vertical;
+  border: 2px solid #1c1c1c;
+  border-radius: 8px;
+  padding: 6px;
+  font-family: inherit;
+}
+
+/* ============================================================
+   Ficha de Item
+   ============================================================ */
+.toon-rpg.sheet.item { min-width: 420px; }
+.toon-rpg.sheet.item .window-content { padding: 12px; }
+.toon-item-body-wrap { display: flex; flex-direction: column; gap: 10px; }
+.toon-item-header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.item-img {
+  width: 64px;
+  height: 64px;
+  border: 3px solid #1c1c1c;
+  border-radius: 12px;
+  box-shadow: 0 2px 0 #1c1c1c;
+  object-fit: cover;
+}
+.item-name {
+  flex: 1;
+  font-size: 1.3em;
+  font-weight: 800;
+}
+.item-body {
+  background: #fff;
+  border: 3px solid #1c1c1c;
+  border-radius: 14px;
+  box-shadow: 0 3px 0 #1c1c1c;
+  padding: 10px 12px;
+}
+.item-body .field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0;
+}
+.item-body .field.description { flex-direction: column; align-items: stretch; }
+.item-body label { font-weight: 700; min-width: 120px; }
+.item-body .field.description label { min-width: 0; }

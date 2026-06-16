@@ -1,66 +1,85 @@
 <div class="toon-sheet-body">
-  <header class="toon-header">
-    <img class="profile-img" src="{{actor.img}}" data-edit="img" alt="{{actor.name}}">
-    <div class="header-fields">
-      <input class="char-name" type="text" name="name" value="{{actor.name}}" placeholder="{{localize 'TOON.Actor.NamePlaceholder'}}">
-      <div class="header-line">
-        <label>{{localize 'TOON.Species'}}</label>
-        <input type="text" name="system.species" value="{{system.species}}">
+  <div class="toon-banner">
+    <input class="char-name" type="text" name="name" value="{{actor.name}}" placeholder="{{localize 'TOON.Actor.NamePlaceholder'}}">
+  </div>
+
+  <div class="toon-columns">
+    <aside class="toon-sidebar">
+      <div class="portrait">
+        <img src="{{actor.img}}" data-edit="img" alt="{{actor.name}}">
       </div>
-    </div>
-  </header>
 
-  <section class="resources">
-    <div class="resource hp">
-      <label>{{localize 'TOON.HP'}}</label>
-      <div class="hp-fields">
-        <input type="number" name="system.hp.value" value="{{system.hp.value}}"> /
-        <input type="number" name="system.hp.max" value="{{system.hp.max}}">
+      <div class="vitals">
+        <div class="vital hp">
+          <label>{{localize 'TOON.HP'}}</label>
+          <span class="hp-fields">
+            <input type="number" name="system.hp.value" value="{{system.hp.value}}">
+            <span class="sep">/</span>
+            <input type="number" name="system.hp.max" value="{{system.hp.max}}">
+            <a class="revive" data-action="revive" title="{{localize 'TOON.Revive'}}"><i class="fas fa-heart"></i></a>
+          </span>
+        </div>
+        {{#if system.fallen}}<span class="fallen-tag">{{localize 'TOON.Fallen'}}</span>{{/if}}
       </div>
-      {{#if system.fallen}}<span class="fallen-tag">{{localize 'TOON.Fallen'}}</span>{{/if}}
-      <a class="revive" data-action="revive" title="{{localize 'TOON.Revive'}}"><i class="fas fa-heart"></i></a>
-    </div>
-  </section>
 
-  <section class="attributes">
-    {{#each attributes as |attr|}}
-    <div class="attribute">
-      <label>{{attr.label}}</label>
-      <input type="number" name="system.attributes.{{attr.key}}" min="1" max="6" value="{{attr.value}}">
-      <a class="roll" data-action="roll-attribute" data-attr="{{attr.key}}" title="{{localize 'TOON.Roll.Test'}}">
-        <i class="fas fa-dice-d6"></i>
-      </a>
-    </div>
-    {{/each}}
-  </section>
-
-  <section class="skills">
-    <div class="section-head">
-      <h2>{{localize 'TOON.Tabs.Skills'}}</h2>
-      <a data-action="add-item" data-type="skill" title="{{localize 'TOON.Skills.New'}}"><i class="fas fa-plus"></i></a>
-    </div>
-    {{#each skillsByAttribute as |group|}}
-    <div class="skill-group">
-      {{#if group.skills.length}}<h3>{{group.label}}</h3>{{/if}}
-      <ul>
-        {{#each group.skills as |skill|}}
-        <li class="skill-row" data-item-id="{{skill.id}}">
-          <span class="skill-name">{{skill.name}}</span>
-          <input class="nh" type="number" min="1" max="9" data-edit-item="system.nh" value="{{skill.system.nh}}">
-          <a data-action="roll-skill" title="{{localize 'TOON.Roll.Test'}}"><i class="fas fa-dice"></i></a>
-          <a data-action="edit-item"><i class="fas fa-edit"></i></a>
-          <a data-action="delete-item"><i class="fas fa-trash"></i></a>
-        </li>
+      <div class="attributes">
+        {{#each attributes as |attr|}}
+        <div class="attribute" data-attr="{{attr.key}}">
+          <label>{{attr.label}}</label>
+          <input type="number" name="system.attributes.{{attr.key}}" min="1" max="6" value="{{attr.value}}">
+          <a class="roll" data-action="roll-attribute" data-attr="{{attr.key}}" title="{{localize 'TOON.Roll.Test'}}">
+            <i class="fas fa-dice-d6"></i>
+          </a>
+        </div>
         {{/each}}
-      </ul>
-    </div>
-    {{/each}}
-  </section>
+      </div>
 
-  <section class="biography">
-    <h2>{{localize 'TOON.BeliefsGoals'}}</h2>
-    <textarea name="system.beliefsGoals" rows="3">{{system.beliefsGoals}}</textarea>
-    <h2>{{localize 'TOON.Description'}}</h2>
-    <textarea name="system.description" rows="3">{{system.description}}</textarea>
-  </section>
+      <div class="identity">
+        <div class="field">
+          <label>{{localize 'TOON.Species'}}</label>
+          <input type="text" name="system.species" value="{{system.species}}">
+        </div>
+      </div>
+    </aside>
+
+    <main class="toon-main">
+      <section class="toon-panel skills">
+        <div class="section-head">
+          <h2>{{localize 'TOON.Tabs.Skills'}}</h2>
+          <a data-action="add-item" data-type="skill" title="{{localize 'TOON.Skills.New'}}"><i class="fas fa-plus"></i></a>
+        </div>
+        <div class="panel-body">
+          {{#each skillsByAttribute as |group|}}
+          {{#if group.skills.length}}
+          <div class="skill-group">
+            <h3>{{group.label}}</h3>
+            <ul>
+              {{#each group.skills as |skill|}}
+              <li class="skill-row" data-item-id="{{skill.id}}">
+                <span class="skill-name">{{skill.name}}</span>
+                <input class="nh" type="number" min="1" max="9" data-edit-item="system.nh" value="{{skill.system.nh}}">
+                <a data-action="roll-skill" title="{{localize 'TOON.Roll.Test'}}"><i class="fas fa-dice"></i></a>
+                <a data-action="edit-item"><i class="fas fa-edit"></i></a>
+                <a data-action="delete-item"><i class="fas fa-trash"></i></a>
+              </li>
+              {{/each}}
+            </ul>
+          </div>
+          {{/if}}
+          {{/each}}
+        </div>
+      </section>
+
+      <section class="toon-panel biography">
+        <div class="section-head">
+          <h2>{{localize 'TOON.BeliefsGoals'}}</h2>
+        </div>
+        <div class="panel-body">
+          <textarea name="system.beliefsGoals" rows="3" placeholder="{{localize 'TOON.BeliefsGoals'}}">{{system.beliefsGoals}}</textarea>
+          <h3 class="sub">{{localize 'TOON.Description'}}</h3>
+          <textarea name="system.description" rows="3" placeholder="{{localize 'TOON.Description'}}">{{system.description}}</textarea>
+        </div>
+      </section>
+    </main>
+  </div>
 </div>

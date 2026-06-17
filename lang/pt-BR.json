@@ -52,6 +52,18 @@
   "TOON.Opposed.NotOwner": "Você não controla o defensor.",
   "TOON.Opposed.NoSkill": "{name} não tem a perícia {skill}.",
 
+  "TOON.Plot.RaiseSkill": "Subir NH (gasta 2 Pontos de Trama)",
+  "TOON.Plot.RaiseProdigy": "Subir NH (gasta 4 Pontos de Trama)",
+  "TOON.Plot.Raised": "{name} subiu para NH {nh} (gastou {cost} Pontos de Trama).",
+  "TOON.Plot.MaxNh": "{name} já está no NH máximo ({max}).",
+  "TOON.Plot.NotEnough": "Pontos de Trama insuficientes (precisa de {cost}).",
+  "TOON.Plot.Awarded": "🎬 {name} ganhou {amount} Ponto(s) de Trama!",
+  "TOON.Plot.SelectToken": "Selecione um ou mais personagens para conceder Pontos de Trama.",
+  "TOON.Plot.AwardTitle": "Conceder Pontos de Trama",
+  "TOON.Plot.Amount": "Quantidade",
+  "TOON.Tools.Title": "Ferramentas do Diretor",
+  "TOON.Tools.AwardPlot": "Conceder Ponto de Trama",
+
   "TOON.Tabs.Skills": "Perícias",
   "TOON.Tabs.Prodigies": "Prodígios",
   "TOON.Tabs.Inventory": "Objetos Pessoais",

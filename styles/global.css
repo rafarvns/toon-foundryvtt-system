@@ -444,6 +444,8 @@ a.revive:hover {
   background: #ffe14d;
   transform: scale(1.18);
 }
+.skill-row a.level-up:hover,
+.item-row a.level-up:hover { background: #9be7a8; }
 
 /* Biografia */
 .biography .panel-body { display: flex; flex-direction: column; gap: 4px; }

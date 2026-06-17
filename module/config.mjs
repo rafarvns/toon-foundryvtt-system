@@ -100,6 +100,9 @@ TOON.opposed = {
 /** Fórmula de dano padrão. */
 TOON.defaultDamage = "1d6";
 
+/** Custo em Pontos de Trama para subir 1 NH (entre aventuras). */
+TOON.advancement = { skill: 2, prodigy: 4 };
+
 /** Condições/status do sistema (registradas em CONFIG.statusEffects no init). */
 TOON.statusEffects = [
   { id: "fallen", name: "TOON.Status.Fallen", img: "icons/svg/falling.svg" },

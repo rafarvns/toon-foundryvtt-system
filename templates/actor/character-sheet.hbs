@@ -89,6 +89,7 @@
                       <input type="number" min="1" max="9" data-edit-item="system.nh" value="{{skill.system.nh}}">
                     </div>
                     <a data-action="roll-skill" title="{{localize 'TOON.Roll.Test'}}"><i class="fas fa-dice"></i></a>
+                    <a data-action="level-up" class="level-up" title="{{localize 'TOON.Plot.RaiseSkill'}}"><i class="fas fa-arrow-up"></i></a>
                     <a data-action="edit-item"><i class="fas fa-edit"></i></a>
                     {{#unless skill.isCore}}<a data-action="delete-item"><i class="fas fa-trash"></i></a>{{/unless}}
                   </li>
@@ -115,6 +116,7 @@
                     <input type="number" min="1" max="9" data-edit-item="system.nh" value="{{prodigy.system.nh}}">
                   </div>
                   <a data-action="roll-item" title="{{localize 'TOON.Roll.Test'}}"><i class="fas fa-dice"></i></a>
+                  <a data-action="level-up" class="level-up" title="{{localize 'TOON.Plot.RaiseProdigy'}}"><i class="fas fa-arrow-up"></i></a>
                   <a data-action="edit-item"><i class="fas fa-edit"></i></a>
                   <a data-action="delete-item"><i class="fas fa-trash"></i></a>
                 </li>

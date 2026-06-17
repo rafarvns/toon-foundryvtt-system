@@ -87,4 +87,40 @@ export class ToonActor extends Actor {
     await this.toggleStatusEffect?.("fallen", { active: false });
     return this.update({ "system.hp.value": this.system.hp.max });
   }
+
+  /** Concede Pontos de Trama e anuncia no chat. */
+  async awardPlotPoints(amount = 1) {
+    if (this.system.plotPoints === undefined) return;
+    await this.update({ "system.plotPoints": (this.system.plotPoints ?? 0) + amount });
+    await ChatMessage.implementation.create({
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      content: game.i18n.format("TOON.Plot.Awarded", { name: this.name, amount })
+    });
+  }
+
+  /**
+   * Gasta Pontos de Trama para subir 1 NH de uma perícia (2 pts) ou
+   * prodígio (4 pts). Respeita o NH máximo e o saldo disponível.
+   */
+  async spendPlotPointsToRaise(itemId) {
+    const item = this.items.get(itemId);
+    if (!item || !["skill", "prodigy"].includes(item.type)) return;
+    const cost = item.type === "skill" ? CONFIG.TOON.advancement.skill : CONFIG.TOON.advancement.prodigy;
+    const maxNh = CONFIG.TOON.limits.skillNh.max;
+
+    if (item.system.nh >= maxNh) {
+      return ui.notifications?.warn(game.i18n.format("TOON.Plot.MaxNh", { name: item.name, max: maxNh }));
+    }
+    if ((this.system.plotPoints ?? 0) < cost) {
+      return ui.notifications?.warn(game.i18n.format("TOON.Plot.NotEnough", { cost }));
+    }
+
+    const newNh = item.system.nh + 1;
+    await this.update({ "system.plotPoints": this.system.plotPoints - cost });
+    await item.update({ "system.nh": newNh });
+    await ChatMessage.implementation.create({
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      content: game.i18n.format("TOON.Plot.Raised", { name: item.name, nh: newNh, cost })
+    });
+  }
 }

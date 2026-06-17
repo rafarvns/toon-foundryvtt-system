@@ -10,6 +10,7 @@ import * as documents from "./module/documents/_module.mjs";
 import * as applications from "./module/applications/_module.mjs";
 import { ToonRoller } from "./module/dice/roller.mjs";
 import { ProdigyGenerator } from "./module/setup/prodigy-generator.mjs";
+import { PlotTools } from "./module/setup/plot-tools.mjs";
 
 Hooks.once("init", async () => {
   utils.log("Inicializando o sistema Toon");
@@ -46,6 +47,27 @@ Hooks.once("init", async () => {
 // Liga os botões dos cartões de chat (dano/aplicar dano)
 Hooks.on("renderChatMessageHTML", (message, html) => ToonRoller.onRenderChatMessage(message, html));
 
+// Ferramentas do Diretor na barra de controles (apenas GM)
+Hooks.on("getSceneControlButtons", (controls) => {
+  if (!game.user.isGM) return;
+  controls.toon = {
+    name: "toon",
+    title: game.i18n.localize("TOON.Tools.Title"),
+    icon: "fas fa-clapperboard",
+    layer: "tokens",
+    visible: true,
+    tools: {
+      "award-plot": {
+        name: "award-plot",
+        title: game.i18n.localize("TOON.Tools.AwardPlot"),
+        icon: "fas fa-star",
+        button: true,
+        onClick: () => PlotTools.award()
+      }
+    }
+  };
+});
+
 function _registerSheets() {
   const DSC = foundry.applications.apps.DocumentSheetConfig;
 
@@ -73,7 +95,8 @@ Hooks.once("ready", async () => {
   game.toon = {
     roller: ToonRoller,
     config: TOON,
-    generateProdigies: (opts) => ProdigyGenerator.generate(opts)
+    generateProdigies: (opts) => ProdigyGenerator.generate(opts),
+    awardPlotPoints: () => PlotTools.award()
   };
 
   // Popula o compêndio de Prodígios na primeira vez (se estiver vazio).

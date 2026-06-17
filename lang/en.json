@@ -52,6 +52,18 @@
   "TOON.Opposed.NotOwner": "You don't control the defender.",
   "TOON.Opposed.NoSkill": "{name} doesn't have the {skill} skill.",
 
+  "TOON.Plot.RaiseSkill": "Raise level (spend 2 Plot Points)",
+  "TOON.Plot.RaiseProdigy": "Raise level (spend 4 Plot Points)",
+  "TOON.Plot.Raised": "{name} raised to level {nh} (spent {cost} Plot Points).",
+  "TOON.Plot.MaxNh": "{name} is already at the max level ({max}).",
+  "TOON.Plot.NotEnough": "Not enough Plot Points (need {cost}).",
+  "TOON.Plot.Awarded": "🎬 {name} earned {amount} Plot Point(s)!",
+  "TOON.Plot.SelectToken": "Select one or more characters to award Plot Points.",
+  "TOON.Plot.AwardTitle": "Award Plot Points",
+  "TOON.Plot.Amount": "Amount",
+  "TOON.Tools.Title": "Director Tools",
+  "TOON.Tools.AwardPlot": "Award Plot Point",
+
   "TOON.Tabs.Skills": "Skills",
   "TOON.Tabs.Prodigies": "Shticks",
   "TOON.Tabs.Inventory": "Personal Items",

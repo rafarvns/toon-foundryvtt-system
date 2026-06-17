@@ -19,6 +19,7 @@ export class ToonActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
       "edit-item": ToonActorSheet._onEditItem,
       "delete-item": ToonActorSheet._onDeleteItem,
       "roll-item": ToonActorSheet._onRollItem,
+      "level-up": ToonActorSheet._onLevelUp,
       "revive": ToonActorSheet._onRevive,
       "switch-tab": ToonActorSheet._onTabClick,
       "edit-image": ToonActorSheet._onEditImage
@@ -239,6 +240,11 @@ export class ToonActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
   static _onDeleteItem(event, target) {
     const id = target.closest("[data-item-id]").dataset.itemId;
     return this.document.items.get(id)?.delete();
+  }
+
+  static _onLevelUp(event, target) {
+    const id = target.closest("[data-item-id]").dataset.itemId;
+    return this.document.spendPlotPointsToRaise(id);
   }
 
   static _onRevive() {

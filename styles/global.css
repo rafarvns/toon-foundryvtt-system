@@ -470,6 +470,42 @@ a.revive:hover {
 .toon-dialog label { font-weight: 700; }
 
 /* ============================================================
+   Cartões de chat (testes e dano)
+   ============================================================ */
+.toon-chat { font-family: "Signika", sans-serif; }
+.toon-chat h3 {
+  margin: 0 0 4px;
+  font-weight: 800;
+  text-transform: uppercase;
+  border: none;
+}
+.toon-chat .chat-result { padding: 2px 0 4px; }
+.toon-chat .chat-result.is-success strong { color: #27a64c; }
+.toon-chat .chat-result.is-fail strong { color: #c0392b; }
+.toon-chat .chat-damage strong { font-size: 1.4em; color: #e8413c; }
+.toon-chat .opposed-outcome { margin-top: 4px; padding: 3px 0; }
+.toon-chat .opposed-outcome.is-success strong { color: #27a64c; }
+.toon-chat .opposed-outcome.is-fail strong { color: #555; }
+.toon-chat .toon-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  padding: 4px 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.82em;
+  color: #1c1c1c;
+  background: #ffc400;
+  border: 2px solid #1c1c1c;
+  border-radius: 10px;
+  box-shadow: 0 2px 0 #1c1c1c;
+  cursor: pointer;
+  line-height: 1.4;
+}
+.toon-chat .toon-btn:hover { background: #ffd54a; }
+
+/* ============================================================
    Ficha de Item
    ============================================================ */
 .toon-rpg.sheet.item { min-width: 420px; }

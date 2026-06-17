@@ -1,0 +1,24 @@
+<div class="toon-chat">
+  <h3>{{label}}</h3>
+  <div class="chat-result {{#if success}}is-success{{else}}is-fail{{/if}}">
+    NH {{nh}}{{#if modifier}} (mod {{modifier}}){{/if}} · 2d6 = {{total}} —
+    <strong>{{#if success}}{{localize 'TOON.Roll.Success'}}{{else}}{{localize 'TOON.Roll.Fail'}}{{/if}}</strong>
+    {{#if auto}} ({{localize 'TOON.Roll.Auto'}}){{/if}}
+  </div>
+  {{#if opposed}}
+  <button type="button" class="toon-btn" data-toon="defend"
+          data-attacker-id="{{attackerId}}" data-attacker-success="{{attackerSuccess}}"
+          data-defender-id="{{defenderId}}" data-defense-skill="{{defenseSkill}}"
+          data-mutual="{{mutual}}" data-damage="{{isDamage}}" data-category="{{category}}"
+          data-attack-label="{{label}}">
+    <i class="fas fa-shield-halved"></i> {{localize 'TOON.Opposed.Defend'}} ({{defenseSkill}})
+  </button>
+  {{else}}
+    {{#if canDamage}}
+    <button type="button" class="toon-btn" data-toon="roll-damage"
+            data-actor-id="{{attackerId}}" data-formula="{{damageFormula}}" data-label="{{damageLabel}}">
+      <i class="fas fa-dice"></i> {{localize 'TOON.Chat.CauseDamage'}} ({{damageFormula}})
+    </button>
+    {{/if}}
+  {{/if}}
+</div>

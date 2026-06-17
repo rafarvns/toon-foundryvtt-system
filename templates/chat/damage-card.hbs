@@ -1,0 +1,10 @@
+<div class="toon-chat">
+  <h3>{{label}}</h3>
+  <div class="chat-result chat-damage">
+    <strong>{{total}}</strong> {{localize 'TOON.Chat.DamagePoints'}}
+  </div>
+  <button type="button" class="toon-btn" data-toon="apply-damage"
+          data-amount="{{total}}" data-victim-id="{{victimId}}">
+    <i class="fas fa-heart-crack"></i> {{localize 'TOON.Chat.ApplyDamage'}}
+  </button>
+</div>

@@ -1,0 +1,16 @@
+<div class="toon-chat">
+  <h3>{{attackLabel}} × {{defenseSkill}}</h3>
+  <div class="chat-result {{#if defSuccess}}is-success{{else}}is-fail{{/if}}">
+    {{defenderName}} · {{defenseSkill}} · 2d6 = {{defTotal}} —
+    <strong>{{#if defSuccess}}{{localize 'TOON.Roll.Success'}}{{else}}{{localize 'TOON.Roll.Fail'}}{{/if}}</strong>
+    {{#if defAuto}} ({{localize 'TOON.Roll.Auto'}}){{/if}}
+  </div>
+  <div class="opposed-outcome {{outcomeClass}}"><strong>{{outcomeText}}</strong></div>
+  {{#if hit}}
+  <button type="button" class="toon-btn" data-toon="roll-damage"
+          data-actor-id="{{hitterId}}" data-formula="{{damageFormula}}"
+          data-label="{{damageLabel}}" data-victim-id="{{victimId}}">
+    <i class="fas fa-dice"></i> {{localize 'TOON.Chat.CauseDamage'}} ({{damageFormula}})
+  </button>
+  {{/if}}
+</div>

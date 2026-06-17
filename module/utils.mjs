@@ -5,7 +5,10 @@
 const TEMPLATES = [
   "systems/toon-rpg/templates/actor/character-sheet.hbs",
   "systems/toon-rpg/templates/actor/npc-sheet.hbs",
-  "systems/toon-rpg/templates/item/item-sheet.hbs"
+  "systems/toon-rpg/templates/item/item-sheet.hbs",
+  "systems/toon-rpg/templates/chat/skill-card.hbs",
+  "systems/toon-rpg/templates/chat/damage-card.hbs",
+  "systems/toon-rpg/templates/chat/opposed-card.hbs"
 ];
 
 /** Pré-carrega todos os templates Handlebars do sistema. */

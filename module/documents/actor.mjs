@@ -35,11 +35,16 @@ export class ToonActor extends Actor {
   async rollSkill(itemId, { modifier = 0 } = {}) {
     const item = this.items.get(itemId);
     if (!item || item.type !== "skill") return null;
+    const opposed = CONFIG.TOON.opposed[item.name] ?? null;
+    const target = game.user?.targets?.first?.() ?? null;
     return ToonRoller.rollSkillTest({
       nh: item.system.nh,
       label: item.name,
       actor: this,
-      modifier
+      modifier,
+      opposed,
+      defenderId: target?.actor?.id ?? null,
+      canDamage: !!opposed?.damage
     });
   }
 
@@ -66,7 +71,9 @@ export class ToonActor extends Actor {
       speaker: ChatMessage.getSpeaker({ actor: this }),
       content: game.i18n.format("TOON.Damage.Dealt", { name: this.name, amount })
     });
-    if (value <= 0) {
+    const fell = value <= 0;
+    await this.toggleStatusEffect?.("fallen", { active: fell });
+    if (fell) {
       await ChatMessage.implementation.create({
         speaker: ChatMessage.getSpeaker({ actor: this }),
         content: game.i18n.format("TOON.Fell", { name: this.name })
@@ -75,8 +82,9 @@ export class ToonActor extends Actor {
     return value;
   }
 
-  /** Levanta o personagem: restaura PV ao máximo (volta após "Cair"). */
+  /** Levanta o personagem: restaura PV ao máximo e remove o status "Caiu". */
   async revive() {
+    await this.toggleStatusEffect?.("fallen", { active: false });
     return this.update({ "system.hp.value": this.system.hp.max });
   }
 }

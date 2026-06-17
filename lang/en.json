@@ -31,6 +31,27 @@
   "TOON.Damage.Label": "Damage",
   "TOON.Damage.Dealt": "{name} took {amount} damage!",
 
+  "TOON.Status.Fallen": "Fell Down",
+  "TOON.Status.Stunned": "Stunned",
+
+  "TOON.Chat.CauseDamage": "Deal damage",
+  "TOON.Chat.ApplyDamage": "Apply damage to target",
+  "TOON.Chat.DamagePoints": "damage",
+  "TOON.Chat.NoTarget": "Target or select a token you control.",
+
+  "TOON.Opposed.Defend": "Defend",
+  "TOON.Opposed.Attacker": "Attacker",
+  "TOON.Opposed.Hit": "{attacker} hits {defender}! Roll damage.",
+  "TOON.Opposed.Counter": "{defender} strikes back and hits {attacker}! Roll damage.",
+  "TOON.Opposed.Convinced": "{defender} was fast-talked!",
+  "TOON.Opposed.Resisted": "{defender} resisted the fast-talk!",
+  "TOON.Opposed.AttackerGains": "{attacker} gained ground!",
+  "TOON.Opposed.DefenderGains": "{defender} gained ground!",
+  "TOON.Opposed.Nothing": "Nothing happens — no advantage.",
+  "TOON.Opposed.NoDefender": "No target set for the defense.",
+  "TOON.Opposed.NotOwner": "You don't control the defender.",
+  "TOON.Opposed.NoSkill": "{name} doesn't have the {skill} skill.",
+
   "TOON.Tabs.Skills": "Skills",
   "TOON.Tabs.Prodigies": "Shticks",
   "TOON.Tabs.Inventory": "Personal Items",

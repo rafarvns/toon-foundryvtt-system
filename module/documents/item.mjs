@@ -33,6 +33,13 @@ export class ToonItem extends Item {
     const actor = this.actor;
     switch (this.type) {
       case "skill":
+        return ToonRoller.rollSkillTest({
+          nh: this.system.nh,
+          label: this.name,
+          actor,
+          modifier,
+          canDamage: CONFIG.TOON.damageSkills.includes(this.name)
+        });
       case "prodigy":
         return ToonRoller.rollSkillTest({ nh: this.system.nh, label: this.name, actor, modifier });
       case "weapon":

@@ -31,6 +31,27 @@
   "TOON.Damage.Label": "Dano",
   "TOON.Damage.Dealt": "{name} sofreu {amount} pontos de dano!",
 
+  "TOON.Status.Fallen": "Caiu",
+  "TOON.Status.Stunned": "Estupefação",
+
+  "TOON.Chat.CauseDamage": "Causar dano",
+  "TOON.Chat.ApplyDamage": "Aplicar dano ao alvo",
+  "TOON.Chat.DamagePoints": "pontos de dano",
+  "TOON.Chat.NoTarget": "Mire ou selecione um token que você controla.",
+
+  "TOON.Opposed.Defend": "Defender",
+  "TOON.Opposed.Attacker": "Atacante",
+  "TOON.Opposed.Hit": "{attacker} acerta {defender}! Role o dano.",
+  "TOON.Opposed.Counter": "{defender} revida e acerta {attacker}! Role o dano.",
+  "TOON.Opposed.Convinced": "{defender} se deixou convencer pela Lábia!",
+  "TOON.Opposed.Resisted": "{defender} resistiu à Lábia!",
+  "TOON.Opposed.AttackerGains": "{attacker} ganhou terreno!",
+  "TOON.Opposed.DefenderGains": "{defender} ganhou terreno!",
+  "TOON.Opposed.Nothing": "Nada acontece — ninguém leva vantagem.",
+  "TOON.Opposed.NoDefender": "Nenhum alvo definido para a defesa.",
+  "TOON.Opposed.NotOwner": "Você não controla o defensor.",
+  "TOON.Opposed.NoSkill": "{name} não tem a perícia {skill}.",
+
   "TOON.Tabs.Skills": "Perícias",
   "TOON.Tabs.Prodigies": "Prodígios",
   "TOON.Tabs.Inventory": "Objetos Pessoais",

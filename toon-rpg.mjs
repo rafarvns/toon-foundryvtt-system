@@ -34,11 +34,17 @@ Hooks.once("init", async () => {
     npc: { bar: ["hp"], value: [] }
   };
 
+  // Condições/status do sistema (Caiu, Estupefação)
+  CONFIG.statusEffects.push(...TOON.statusEffects);
+
   utils.registerHandlebarsHelpers();
   await utils.preloadHandlebarsTemplates();
 
   _registerSheets();
 });
+
+// Liga os botões dos cartões de chat (dano/aplicar dano)
+Hooks.on("renderChatMessageHTML", (message, html) => ToonRoller.onRenderChatMessage(message, html));
 
 function _registerSheets() {
   const DSC = foundry.applications.apps.DocumentSheetConfig;

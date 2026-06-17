@@ -14,6 +14,26 @@
   font-family: "Signika", sans-serif;
 }
 
+/* ---------- Inputs padronizados (brancos, texto preto) ---------- */
+.toon-rpg input[type="text"],
+.toon-rpg input[type="number"],
+.toon-rpg select,
+.toon-rpg textarea {
+  background: #fff;
+  border: 2px solid #1c1c1c;
+  border-radius: 8px;
+  padding: 3px 6px;
+  color: #1c1c1c;
+  font-family: inherit;
+  height: auto;
+}
+.toon-rpg input:focus,
+.toon-rpg select:focus,
+.toon-rpg textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #ffc40088;
+}
+
 /* ---------- Layout geral da ficha ---------- */
 .toon-sheet-body {
   display: flex;
@@ -27,8 +47,11 @@
 .toon-columns {
   display: grid;
   grid-template-columns: 240px 1fr;
+  grid-template-rows: minmax(0, 1fr);
   gap: 12px;
-  align-items: start;
+  align-items: stretch;
+  flex: 1;
+  min-height: 0;
 }
 
 /* ---------- Banner do nome ---------- */
@@ -39,10 +62,12 @@
   box-shadow: 0 3px 0 #1c1c1c;
   padding: 4px 14px;
 }
-.toon-banner .char-name {
+/* o nome é um "título", não um campo padrão */
+.toon-rpg .toon-banner .char-name {
   width: 100%;
   border: none;
   background: transparent;
+  border-radius: 0;
   font-size: 1.9em;
   font-weight: 800;
   text-align: center;
@@ -50,7 +75,7 @@
   color: #1c1c1c;
 }
 .toon-banner .char-name::placeholder { color: #00000055; }
-.toon-banner .char-name:focus { outline: none; box-shadow: none; }
+.toon-banner .char-name:focus { box-shadow: none; }
 
 /* ---------- Cartões base ---------- */
 .toon-sidebar > div,
@@ -83,34 +108,68 @@
 
 .vitals {
   display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 12px 10px;
+}
+.vital-shape {
+  display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 10px;
-}
-.vital {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 6px;
-}
-.vital label {
-  font-weight: 800;
-  text-transform: uppercase;
-  font-size: 0.78em;
-}
-.vital input {
-  width: 48px;
-  text-align: center;
-  font-weight: 800;
-  font-size: 1.1em;
-}
-.hp-fields {
-  display: flex;
   align-items: center;
   gap: 4px;
 }
-.hp-fields .sep { font-weight: 800; }
-a.revive { color: #e8413c; font-size: 1.1em; }
+.vital-shape .shape { position: relative; }
+.vital-shape .shape svg { width: 100%; height: 100%; display: block; }
+.vital-shape .shape path,
+.vital-shape .shape polygon {
+  stroke: #1c1c1c;
+  stroke-width: 3;
+  vector-effect: non-scaling-stroke;
+  stroke-linejoin: round;
+}
+.vital-shape.hp .shape { width: 84px; height: 78px; }
+.vital-shape.hp .shape path { fill: #e8413c; }
+.vital-shape.pp .shape { width: 84px; height: 84px; }
+.vital-shape.pp .shape polygon { fill: #b15cff; }
+
+/* números dentro das formas: input transparente sobre a forma */
+.toon-rpg .vital-shape .shape input {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 84%;
+  padding: 0;
+  text-align: center;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  color: #fff;
+  font-weight: 900;
+  line-height: 1;
+}
+.toon-rpg .vital-shape .shape input:focus { outline: none; box-shadow: none; }
+.vital-shape .shape input::-webkit-outer-spin-button,
+.vital-shape .shape input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.vital-shape .shape input[type="number"] { -moz-appearance: textfield; }
+
+.vital-shape.hp .cur { top: 26%; font-size: 1.5em; text-shadow: 1px 1px 0 #00000055; }
+.vital-shape.hp .mx { bottom: 18%; font-size: 0.78em; opacity: 0.95; }
+.vital-shape.pp .cur { top: 50%; transform: translateY(-50%); font-size: 1.5em; text-shadow: 1px 1px 0 #00000055; }
+
+.shape-caption {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72em;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #1c1c1c;
+}
+.shape-caption .revive { color: #e8413c; }
 .fallen-tag {
   align-self: center;
   background: #e8413c;
@@ -122,7 +181,7 @@ a.revive { color: #e8413c; font-size: 1.1em; }
   border: 2px solid #1c1c1c;
 }
 
-/* Atributos coloridos por tipo */
+/* Atributos coloridos por tipo, texto sempre preto */
 .attributes {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -133,7 +192,7 @@ a.revive { color: #e8413c; font-size: 1.1em; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: 3px;
   border: 3px solid #1c1c1c;
   border-radius: 14px;
   box-shadow: 0 2px 0 #1c1c1c;
@@ -143,46 +202,116 @@ a.revive { color: #e8413c; font-size: 1.1em; }
   font-weight: 800;
   text-transform: uppercase;
   font-size: 0.76em;
+  color: #1c1c1c;
 }
-.attribute input {
-  width: 56px;
-  text-align: center;
-  font-size: 1.6em;
+.attribute .value { line-height: 1; }
+.attribute .value .display {
+  font-size: 1.5em;
   font-weight: 800;
-  border: none;
-  background: transparent;
+  color: #1c1c1c;
 }
-.attribute .roll { font-size: 1.1em; }
-.attribute[data-attr="muque"]    { background: #ffe0db; }
-.attribute[data-attr="zip"]      { background: #dbeeff; }
-.attribute[data-attr="astucia"]  { background: #dcf6dd; }
-.attribute[data-attr="caradura"] { background: #f0dcff; }
+.attribute .value input {
+  width: 54px;
+  text-align: center;
+  font-size: 1.3em;
+  font-weight: 800;
+  color: #1c1c1c;
+}
+.attribute .roll { font-size: 1.1em; color: #1c1c1c; }
 
-.identity {
+/* Campos clicáveis: viram "label" e só viram input ao editar (duplo clique) */
+.click-roll { cursor: pointer; }
+.click-roll input { display: none; }
+.click-roll.editing input { display: inline-block; }
+.click-roll.editing .display { display: none; }
+.click-roll:hover .display { text-decoration: underline dotted; }
+.attribute[data-attr="muque"]    { background: #ff6b5b; }
+.attribute[data-attr="zip"]      { background: #3aa7ff; }
+.attribute[data-attr="astucia"]  { background: #43c96d; }
+.attribute[data-attr="caradura"] { background: #b863ff; }
+
+/* Campos de Espécie/Profissão na aba Perfil */
+.profile-fields {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 10px;
+  gap: 12px;
+  margin-bottom: 10px;
 }
-.identity .field {
+.profile-fields .field {
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
-.identity label {
+.profile-fields label {
   font-weight: 700;
   text-transform: uppercase;
-  font-size: 0.72em;
-  color: #555;
+  font-size: 0.82em;
+  color: #1c1c1c;
 }
 
-/* ---------- Coluna principal ---------- */
+/* ---------- Coluna principal + abas ---------- */
 .toon-main {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  min-height: 0;
 }
+
+.toon-tabs {
+  display: flex;
+  gap: 6px;
+}
+.toon-tabs .tab-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  color: #1c1c1c;
+  background: #ffe9a8;
+  border: 3px solid #1c1c1c;
+  border-bottom: none;
+  border-radius: 12px 12px 0 0;
+  cursor: pointer;
+}
+.toon-tabs .tab-link.active {
+  background: #ffc400;
+}
+.toon-tabs .tab-link:hover { background: #ffd54a; }
+
+.tab-content { padding-top: 0; flex: 1; min-height: 0; overflow-y: auto; }
+.toon-rpg .tab-content > .tab { display: none; }
+.toon-rpg .tab-content > .tab.active { display: block; }
+
+/* Aba Perfil preenche a altura: textareas crescem para ocupar o espaço */
+.tab-content > .tab[data-tab="bio"].active {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+.tab[data-tab="bio"] .toon-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.tab[data-tab="bio"] .panel-body {
+  flex: 1;
+  min-height: 0;
+}
+.biography .panel-body textarea {
+  flex: 1;
+  min-height: 60px;
+}
+
 .toon-panel { overflow: hidden; }
+/* a borda SUPERIOR do painel é a "linha" das abas: arredonda à direita,
+   e fica reta só no canto superior-esquerdo (onde encostam as abas) */
+.tab-content .toon-panel {
+  border-top-left-radius: 0;
+}
 .section-head {
   display: flex;
   justify-content: space-between;
@@ -209,15 +338,27 @@ a.revive { color: #e8413c; font-size: 1.1em; }
 .toon-panel.inventory .section-head { background: linear-gradient(180deg, #ff9d3a, #f07d10); }
 .toon-panel.biography .section-head { background: linear-gradient(180deg, #46c66b, #27a64c); }
 
-/* Grupos de perícias */
-.skill-group { margin-bottom: 8px; }
+/* Grupos de perícias — cabeçalho preto, perícias compactas mas grupos espaçados */
+.skill-group { margin-bottom: 4px; }
+.skill-group + .skill-group { margin-top: 12px; }
+
+/* Perícias em grade 2×2 (grupos por atributo lado a lado) */
+.toon-panel.skills .panel-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 18px;
+  row-gap: 12px;
+  align-items: start;
+}
+.toon-panel.skills .panel-body .skill-group { margin: 0; }
 .skill-group h3 {
-  margin: 6px 0 2px;
-  font-size: 0.82em;
-  font-weight: 800;
+  margin: 4px 0 2px;
+  font-size: 0.95em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #1f8be0;
-  border-bottom: 2px dotted #d2d2d2;
+  color: #1c1c1c;
+  border-bottom: 2px solid #1c1c1c;
 }
 
 /* Listas */
@@ -230,27 +371,62 @@ a.revive { color: #e8413c; font-size: 1.1em; }
 .item-row {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 3px 6px;
+  gap: 6px;
+  padding: 5px 6px;
   border-radius: 8px;
 }
 .skill-row:hover,
 .item-row:hover { background: #fff3c4; }
 .skill-name,
-.item-row > span:first-child { flex: 1; font-weight: 600; }
-.nh {
+.item-row > span:first-child { flex: 1; font-weight: 600; color: #1c1c1c; }
+.skill-name { cursor: pointer; }
+.skill-name:hover { text-decoration: underline dotted; }
+/* NH como "label" clicável (1 clique rola, duplo edita) */
+.nh .display {
+  display: inline-block;
+  min-width: 22px;
+  text-align: center;
+  font-weight: 800;
+  color: #1c1c1c;
+}
+.nh input {
   width: 44px;
   text-align: center;
   font-weight: 800;
-  border: 2px solid #1c1c1c;
-  border-radius: 8px;
-  background: #fffbe6;
 }
 .damage,
 .qty { font-weight: 700; color: #666; }
 
-/* Botões de ação redondinhos */
-.toon-rpg a[data-action] {
+/* Barra de ferramentas dos painéis + botão "adicionar" (pílula) */
+.panel-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 8px 12px 0;
+}
+.btn-add {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 12px;
+  font-weight: 800;
+  font-size: 0.76em;
+  text-transform: uppercase;
+  color: #1c1c1c;
+  background: #ffc400;
+  border: 2px solid #1c1c1c;
+  border-radius: 20px;
+  box-shadow: 0 2px 0 #1c1c1c;
+  cursor: pointer;
+}
+.btn-add:hover { background: #ffd54a; }
+
+/* Botões de ação redondos — só dentro de linhas/atributos/vitais */
+.skill-row a[data-action],
+.item-row a[data-action],
+.attribute a[data-action],
+.section-head a[data-action],
+a.revive {
   cursor: pointer;
   width: 24px;
   height: 24px;
@@ -260,7 +436,11 @@ a.revive { color: #e8413c; font-size: 1.1em; }
   border-radius: 50%;
   transition: background 0.1s, transform 0.1s;
 }
-.toon-rpg a[data-action]:hover {
+.skill-row a[data-action]:hover,
+.item-row a[data-action]:hover,
+.attribute a[data-action]:hover,
+.section-head a[data-action]:hover,
+a.revive:hover {
   background: #ffe14d;
   transform: scale(1.18);
 }
@@ -272,17 +452,22 @@ a.revive { color: #e8413c; font-size: 1.1em; }
   font-size: 0.82em;
   text-transform: uppercase;
   border: none;
-  color: #27a64c;
+  color: #1c1c1c;
 }
 .biography textarea,
 .item-body textarea {
   width: 100%;
   resize: vertical;
-  border: 2px solid #1c1c1c;
-  border-radius: 8px;
-  padding: 6px;
-  font-family: inherit;
 }
+
+/* Diálogo de criação (ex.: Nova Perícia) */
+.toon-dialog .field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+.toon-dialog label { font-weight: 700; }
 
 /* ============================================================
    Ficha de Item
@@ -294,14 +479,6 @@ a.revive { color: #e8413c; font-size: 1.1em; }
   display: flex;
   gap: 10px;
   align-items: center;
-}
-.item-img {
-  width: 64px;
-  height: 64px;
-  border: 3px solid #1c1c1c;
-  border-radius: 12px;
-  box-shadow: 0 2px 0 #1c1c1c;
-  object-fit: cover;
 }
 .item-name {
   flex: 1;

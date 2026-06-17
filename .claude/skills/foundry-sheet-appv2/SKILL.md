@@ -9,6 +9,10 @@ API: `foundry_14_api_docs/classes/foundry.applications.api.ApplicationV2.md`, `f
 
 > **Regra de ouro v13+/v14: SEM jQuery.** Toda manipulação de DOM usa `HTMLElement` puro (`querySelector`, `addEventListener`). O `this.element` da sheet e o `html` dos hooks são `HTMLElement`.
 
+> **Visual:** siga o `DESIGN.md` (raiz do repo) para todo estilo/CSS/layout — tokens de cor, bordas, abas, etc. Esta skill cobre a *estrutura* da sheet; o `DESIGN.md` cobre a *aparência*.
+
+> **Abas:** use `data-action="switch-tab"` (implementação manual), **nunca** `data-action="tab"` — `tab` é ação reservada do ApplicationV2 e quebra com "must pass both the tab and tab group identifier". Ver `DESIGN.md §5`.
+
 ## Estrutura de uma sheet
 
 ```js

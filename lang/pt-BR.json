@@ -9,6 +9,7 @@
   "TOON.Attributes.Caradura": "Caradura",
 
   "TOON.HP": "Pontos de Vida",
+  "TOON.HPMax": "PV máximo",
   "TOON.PlotPoints": "Pontos de Trama",
   "TOON.NH": "Nível de Habilidade",
   "TOON.Attribute": "Atributo",
@@ -25,6 +26,7 @@
   "TOON.Roll.Success": "SUCESSO",
   "TOON.Roll.Fail": "FALHA",
   "TOON.Roll.Auto": "automático!",
+  "TOON.Roll.ClickHint": "Clique para rolar · clique-duplo para editar",
 
   "TOON.Damage.Label": "Dano",
   "TOON.Damage.Dealt": "{name} sofreu {amount} pontos de dano!",
@@ -32,11 +34,16 @@
   "TOON.Tabs.Skills": "Perícias",
   "TOON.Tabs.Prodigies": "Prodígios",
   "TOON.Tabs.Inventory": "Objetos Pessoais",
+  "TOON.Tabs.Profile": "Perfil",
 
   "TOON.Actor.NamePlaceholder": "Nome do personagem",
 
   "TOON.Item.New": "Novo Item",
+  "TOON.Field.Name": "Nome",
+  "TOON.EditImage": "Trocar imagem",
+  "TOON.Save": "Salvar",
   "TOON.Skills.New": "Nova Perícia",
+  "TOON.Skills.CannotDeleteCore": "Perícias padrão não podem ser removidas.",
   "TOON.Prodigies.New": "Novo Prodígio",
   "TOON.Prodigies.Cost": "Custo (Pontos de Perícia)",
   "TOON.Prodigies.UsableOnOthers": "Utilizável em outros (+2)",

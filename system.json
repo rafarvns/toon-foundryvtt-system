@@ -29,6 +29,18 @@
       "gear": { "htmlFields": ["description"] }
     }
   },
+  "packs": [
+    {
+      "name": "prodigios",
+      "label": "Prodígios (Toon)",
+      "type": "Item",
+      "system": "toon-rpg",
+      "ownership": { "PLAYER": "OBSERVER", "ASSISTANT": "OWNER" }
+    }
+  ],
+  "packFolders": [
+    { "name": "Toon", "sorting": "m", "packs": ["prodigios"] }
+  ],
   "socket": false,
   "grid": { "distance": 5, "units": "m" },
   "primaryTokenAttribute": "hp",

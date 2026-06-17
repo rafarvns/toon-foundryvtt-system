@@ -9,6 +9,7 @@ import * as data from "./module/data/_module.mjs";
 import * as documents from "./module/documents/_module.mjs";
 import * as applications from "./module/applications/_module.mjs";
 import { ToonRoller } from "./module/dice/roller.mjs";
+import { ProdigyGenerator } from "./module/setup/prodigy-generator.mjs";
 
 Hooks.once("init", async () => {
   utils.log("Inicializando o sistema Toon");
@@ -59,12 +60,22 @@ function _registerSheets() {
   });
 }
 
-Hooks.once("ready", () => {
+Hooks.once("ready", async () => {
   utils.log("Sistema Toon pronto");
 
   // API pública do sistema
   game.toon = {
     roller: ToonRoller,
-    config: TOON
+    config: TOON,
+    generateProdigies: (opts) => ProdigyGenerator.generate(opts)
   };
+
+  // Popula o compêndio de Prodígios na primeira vez (se estiver vazio).
+  if (game.user.isGM) {
+    const pack = game.packs.get(ProdigyGenerator.PACK_ID);
+    if (pack) {
+      const index = await pack.getIndex();
+      if (index.size === 0) await ProdigyGenerator.generate({ notify: false });
+    }
+  }
 });

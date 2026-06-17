@@ -49,7 +49,7 @@ TOON.skills = [
   { name: "Resistir à Lábia", attribute: "astucia" },
   { name: "Visão/Audição/Olfato", attribute: "astucia" },
   { name: "Armar/Desarmar Armadilhas", attribute: "astucia" },
-  { name: "Seguir/Cobrir Pistas", attribute: "astucia" },
+  { name: "Seguir/Esconder Pistas", attribute: "astucia" },
   // Caradura
   { name: "Lábia", attribute: "caradura" },
   { name: "Passar/Detectar Coisas de Má Qualidade", attribute: "caradura" },
@@ -63,9 +63,9 @@ TOON.skills = [
  */
 TOON.prodigies = [
   { name: "Detectar Objetos", cost: 2 },
-  { name: "Esticar", cost: 3 },
+  { name: "Animal de Estimação", cost: 3 },
+  { name: "Fiel Companheiro", cost: 3 },
   { name: "Mudança Rápida/Disfarce", cost: 3 },
-  { name: "Animal de Estimação ou Fiel Companheiro", cost: 3 },
   { name: "Sorte Incrível", cost: 3 },
   { name: "Escudo de 1001 Utilidades", cost: 4 },
   { name: "Voar", cost: 4 },

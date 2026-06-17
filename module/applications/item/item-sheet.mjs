@@ -15,6 +15,11 @@ export class ToonItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
     sheet: { template: "systems/toon-rpg/templates/item/item-sheet.hbs" }
   };
 
+  /** Título da janela = apenas o nome do item. */
+  get title() {
+    return this.document.name;
+  }
+
   /** @inheritDoc */
   async _prepareContext(options) {
     const context = await super._prepareContext(options);

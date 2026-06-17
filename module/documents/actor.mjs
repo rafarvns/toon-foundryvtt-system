@@ -22,7 +22,7 @@ export class ToonActor extends Actor {
     const items = CONFIG.TOON.skills.map((s) => ({
       name: s.name,
       type: "skill",
-      system: { attribute: s.attribute, nh: this.system.attributes[s.attribute] ?? 1 }
+      system: { attribute: s.attribute, nh: this.system.attributes[s.attribute] ?? 1, core: true }
     }));
     return this.createEmbeddedDocuments("Item", items);
   }

@@ -3,12 +3,13 @@
   "TOON.SheetClass.Npc": "Toon NPC",
   "TOON.SheetClass.Item": "Toon Item",
 
-  "TOON.Attributes.Muque": "Brawn",
+  "TOON.Attributes.Muque": "Muscle",
   "TOON.Attributes.Zip": "Zip",
   "TOON.Attributes.Astucia": "Smarts",
   "TOON.Attributes.Caradura": "Chutzpah",
 
   "TOON.HP": "Hit Points",
+  "TOON.HPMax": "Max HP",
   "TOON.PlotPoints": "Plot Points",
   "TOON.NH": "Skill Level",
   "TOON.Attribute": "Attribute",
@@ -25,6 +26,7 @@
   "TOON.Roll.Success": "SUCCESS",
   "TOON.Roll.Fail": "FAILURE",
   "TOON.Roll.Auto": "automatic!",
+  "TOON.Roll.ClickHint": "Click to roll · double-click to edit",
 
   "TOON.Damage.Label": "Damage",
   "TOON.Damage.Dealt": "{name} took {amount} damage!",
@@ -32,11 +34,16 @@
   "TOON.Tabs.Skills": "Skills",
   "TOON.Tabs.Prodigies": "Shticks",
   "TOON.Tabs.Inventory": "Personal Items",
+  "TOON.Tabs.Profile": "Profile",
 
   "TOON.Actor.NamePlaceholder": "Character name",
 
   "TOON.Item.New": "New Item",
+  "TOON.Field.Name": "Name",
+  "TOON.EditImage": "Change image",
+  "TOON.Save": "Save",
   "TOON.Skills.New": "New Skill",
+  "TOON.Skills.CannotDeleteCore": "Default skills can't be deleted.",
   "TOON.Prodigies.New": "New Shtick",
   "TOON.Prodigies.Cost": "Cost (Skill Points)",
   "TOON.Prodigies.UsableOnOthers": "Usable on others (+2)",

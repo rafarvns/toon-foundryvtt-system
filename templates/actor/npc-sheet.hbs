@@ -6,27 +6,34 @@
   <div class="toon-columns">
     <aside class="toon-sidebar">
       <div class="portrait">
-        <img src="{{actor.img}}" data-edit="img" alt="{{actor.name}}">
+        <img src="{{actor.img}}" data-action="edit-image" alt="{{actor.name}}" title="{{localize 'TOON.EditImage'}}">
       </div>
 
       <div class="vitals">
-        <div class="vital hp">
-          <label>{{localize 'TOON.HP'}}</label>
-          <span class="hp-fields">
-            <input type="number" name="system.hp.value" value="{{system.hp.value}}">
-            <span class="sep">/</span>
-            <input type="number" name="system.hp.max" value="{{system.hp.max}}">
-            <a class="revive" data-action="revive" title="{{localize 'TOON.Revive'}}"><i class="fas fa-heart"></i></a>
-          </span>
+        <div class="vital-shape hp">
+          <div class="shape heart">
+            <svg viewBox="-2 -2 36 33.6" preserveAspectRatio="xMidYMid meet">
+              <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+            </svg>
+            <input class="cur" type="number" name="system.hp.value" value="{{system.hp.value}}" title="{{localize 'TOON.HP'}}">
+            <input class="mx" type="number" name="system.hp.max" value="{{system.hp.max}}" title="{{localize 'TOON.HPMax'}}">
+          </div>
+          <div class="shape-caption">
+            <span>{{localize 'TOON.HP'}}</span>
+            <a class="revive" data-action="revive" title="{{localize 'TOON.Revive'}}"><i class="fas fa-rotate-left"></i></a>
+          </div>
         </div>
         {{#if system.fallen}}<span class="fallen-tag">{{localize 'TOON.Fallen'}}</span>{{/if}}
       </div>
 
       <div class="attributes">
         {{#each attributes as |attr|}}
-        <div class="attribute" data-attr="{{attr.key}}">
+        <div class="attribute click-roll" data-attr="{{attr.key}}" data-roll-type="attribute" title="{{localize 'TOON.Roll.ClickHint'}}">
           <label>{{attr.label}}</label>
-          <input type="number" name="system.attributes.{{attr.key}}" min="1" max="6" value="{{attr.value}}">
+          <div class="value">
+            <span class="display">{{attr.value}}</span>
+            <input type="number" name="system.attributes.{{attr.key}}" min="1" max="6" value="{{attr.value}}">
+          </div>
           <a class="roll" data-action="roll-attribute" data-attr="{{attr.key}}" title="{{localize 'TOON.Roll.Test'}}">
             <i class="fas fa-dice-d6"></i>
           </a>
@@ -34,52 +41,67 @@
         {{/each}}
       </div>
 
-      <div class="identity">
-        <div class="field">
-          <label>{{localize 'TOON.Species'}}</label>
-          <input type="text" name="system.species" value="{{system.species}}">
-        </div>
-      </div>
     </aside>
 
     <main class="toon-main">
-      <section class="toon-panel skills">
-        <div class="section-head">
-          <h2>{{localize 'TOON.Tabs.Skills'}}</h2>
-          <a data-action="add-item" data-type="skill" title="{{localize 'TOON.Skills.New'}}"><i class="fas fa-plus"></i></a>
-        </div>
-        <div class="panel-body">
-          {{#each skillsByAttribute as |group|}}
-          {{#if group.skills.length}}
-          <div class="skill-group">
-            <h3>{{group.label}}</h3>
-            <ul>
-              {{#each group.skills as |skill|}}
-              <li class="skill-row" data-item-id="{{skill.id}}">
-                <span class="skill-name">{{skill.name}}</span>
-                <input class="nh" type="number" min="1" max="9" data-edit-item="system.nh" value="{{skill.system.nh}}">
-                <a data-action="roll-skill" title="{{localize 'TOON.Roll.Test'}}"><i class="fas fa-dice"></i></a>
-                <a data-action="edit-item"><i class="fas fa-edit"></i></a>
-                <a data-action="delete-item"><i class="fas fa-trash"></i></a>
-              </li>
-              {{/each}}
-            </ul>
-          </div>
-          {{/if}}
-          {{/each}}
-        </div>
-      </section>
+      <nav class="toon-tabs">
+        <a class="tab-link {{#if (toonEq tab 'skills')}}active{{/if}}" data-action="switch-tab" data-tab="skills">
+          <i class="fas fa-list"></i><span>{{localize 'TOON.Tabs.Skills'}}</span>
+        </a>
+        <a class="tab-link {{#if (toonEq tab 'bio')}}active{{/if}}" data-action="switch-tab" data-tab="bio">
+          <i class="fas fa-user"></i><span>{{localize 'TOON.Tabs.Profile'}}</span>
+        </a>
+      </nav>
 
-      <section class="toon-panel biography">
-        <div class="section-head">
-          <h2>{{localize 'TOON.BeliefsGoals'}}</h2>
-        </div>
-        <div class="panel-body">
-          <textarea name="system.beliefsGoals" rows="3" placeholder="{{localize 'TOON.BeliefsGoals'}}">{{system.beliefsGoals}}</textarea>
-          <h3 class="sub">{{localize 'TOON.Description'}}</h3>
-          <textarea name="system.description" rows="3" placeholder="{{localize 'TOON.Description'}}">{{system.description}}</textarea>
-        </div>
-      </section>
+      <div class="tab-content">
+        <section class="tab {{#if (toonEq tab 'skills')}}active{{/if}}" data-tab="skills">
+          <div class="toon-panel skills">
+            <div class="panel-toolbar">
+              <a class="btn-add" data-action="add-item" data-type="skill"><i class="fas fa-plus"></i> {{localize 'TOON.Skills.New'}}</a>
+            </div>
+            <div class="panel-body">
+              {{#each skillsByAttribute as |group|}}
+              {{#if group.skills.length}}
+              <div class="skill-group">
+                <h3>{{group.label}}</h3>
+                <ul>
+                  {{#each group.skills as |skill|}}
+                  <li class="skill-row" data-item-id="{{skill.id}}">
+                    <span class="skill-name" data-action="roll-skill" title="{{localize 'TOON.Roll.ClickHint'}}">{{skill.name}}</span>
+                    <div class="nh click-roll" data-roll-type="skill" title="{{localize 'TOON.Roll.ClickHint'}}">
+                      <span class="display">{{skill.system.nh}}</span>
+                      <input type="number" min="1" max="9" data-edit-item="system.nh" value="{{skill.system.nh}}">
+                    </div>
+                    <a data-action="roll-skill" title="{{localize 'TOON.Roll.Test'}}"><i class="fas fa-dice"></i></a>
+                    <a data-action="edit-item"><i class="fas fa-edit"></i></a>
+                    {{#unless skill.isCore}}<a data-action="delete-item"><i class="fas fa-trash"></i></a>{{/unless}}
+                  </li>
+                  {{/each}}
+                </ul>
+              </div>
+              {{/if}}
+              {{/each}}
+            </div>
+          </div>
+        </section>
+
+        <section class="tab {{#if (toonEq tab 'bio')}}active{{/if}}" data-tab="bio">
+          <div class="toon-panel biography">
+            <div class="panel-body">
+              <div class="profile-fields">
+                <div class="field">
+                  <label>{{localize 'TOON.Species'}}</label>
+                  <input type="text" name="system.species" value="{{system.species}}">
+                </div>
+              </div>
+              <h3 class="sub">{{localize 'TOON.BeliefsGoals'}}</h3>
+              <textarea name="system.beliefsGoals" rows="5" placeholder="{{localize 'TOON.BeliefsGoals'}}">{{system.beliefsGoals}}</textarea>
+              <h3 class="sub">{{localize 'TOON.Description'}}</h3>
+              <textarea name="system.description" rows="5" placeholder="{{localize 'TOON.Description'}}">{{system.description}}</textarea>
+            </div>
+          </div>
+        </section>
+      </div>
     </main>
   </div>
 </div>

@@ -9,6 +9,7 @@ Você é especialista em UI do **Foundry VTT v14** com a API **ApplicationV2**, 
 
 ## Contexto obrigatório
 
+0. **`DESIGN.md` (raiz do repo) — sistema de design canônico.** LEIA E SIGA À RISCA: tokens de cor, bordas/raios/sombra, tipografia, layout de duas colunas, padrão de abas (`switch-tab`, NÃO `tab`), painéis/toolbar/`btn-add`, inputs padronizados. Reuse os tokens existentes; não invente cores/raios novos sem necessidade. Toda UI nova deve ser indistinguível em estilo da ficha atual.
 1. Skill `.claude/skills/foundry-sheet-appv2/` — padrões de `DEFAULT_OPTIONS`, `PARTS`, `TABS`, `actions`, `_prepareContext`, `_onRender` já adaptados ao Toon. Abra antes de começar.
 2. Skill `foundry-localization` — toda string vem de `lang/pt-BR.json` + `lang/en.json` via `{{localize 'TOON....'}}`.
 3. Skill `foundry-dice-rolls` — para cartões de chat e botões de rolagem.

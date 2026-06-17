@@ -24,6 +24,10 @@ E:\LivreSolucoes\games\foundryvtt-abea
 
 A base de conhecimento Foundry do autor está em `E:\LivreSolucoes\games\foundryvtt-abea\.agent\rules\foundry-knowledge-base.md` — leia-a antes de mexer em sheets, scene controls ou hooks de chat.
 
+## Design / UI
+
+Todo trabalho visual (sheets, diálogos, cartões, CSS) deve seguir **`DESIGN.md`** (raiz do repo) — sistema de design canônico do Toon (tokens de cor, bordas/raios/sombra "ink", tipografia, layout de duas colunas, padrão de abas com `switch-tab`, painéis/`btn-add`, inputs padronizados). Reuse os tokens; não introduza valores avulsos. O agente `foundry-sheet-builder` já é instruído a carregá-lo.
+
 ## Skills do projeto (`.claude/skills/`)
 
 Há skills específicas para construir este system, fundamentadas nos docs v14. Invoque a relevante antes de implementar a área correspondente:
